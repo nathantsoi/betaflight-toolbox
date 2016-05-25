@@ -11,7 +11,7 @@ TABS.cli.initialize = function (callback) {
 
     if (GUI.active_tab != 'cli') {
         GUI.active_tab = 'cli';
-        googleAnalytics.sendAppView('CLI');
+        //googleAnalytics.sendAppView('CLI');
     }
     
     $('#content').load("./tabs/cli.html", function () {

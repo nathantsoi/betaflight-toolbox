@@ -6,7 +6,7 @@ TABS.servos.initialize = function (callback) {
 
     if (GUI.active_tab != 'servos') {
         GUI.active_tab = 'servos';
-        googleAnalytics.sendAppView('Servos');
+        //googleAnalytics.sendAppView('Servos');
     }
 
     function get_servo_configurations() {

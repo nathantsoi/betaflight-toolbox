@@ -7,7 +7,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 
     if (GUI.active_tab != 'configuration') {
         GUI.active_tab = 'configuration';
-        googleAnalytics.sendAppView('Configuration');
+        //googleAnalytics.sendAppView('Configuration');
     }
 
     function load_config() {
@@ -502,13 +502,13 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
 
             // track feature usage
             if (isFeatureEnabled('RX_SERIAL')) {
-                googleAnalytics.sendEvent('Setting', 'SerialRxProvider', serialRXtypes[BF_CONFIG.serialrx_type]);
+                //googleAnalytics.sendEvent('Setting', 'SerialRxProvider', serialRXtypes[BF_CONFIG.serialrx_type]);
             }
             
             for (var i = 0; i < features.length; i++) {
                 var featureName = features[i].name;
                 if (isFeatureEnabled(featureName)) {
-                    googleAnalytics.sendEvent('Setting', 'Feature', featureName);
+                    //googleAnalytics.sendEvent('Setting', 'Feature', featureName);
                 }
             }
 
