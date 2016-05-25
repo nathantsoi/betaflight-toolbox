@@ -1,4 +1,4 @@
-// Disabled via main.js/main.html, cleanflight does not use MSP_BOX.
+// Disabled via main.js/main.html, betaflight does not use MSP_BOX.
 
 'use strict';
 

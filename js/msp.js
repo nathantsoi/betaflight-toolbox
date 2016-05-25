@@ -8,7 +8,7 @@ var MSP_codes = {
     MSP_BOARD_INFO:             4,
     MSP_BUILD_INFO:             5,
     
-    // MSP commands for Cleanflight original features
+    // MSP commands for Betaflight original features
     MSP_CHANNEL_FORWARDING:     32,
     MSP_SET_CHANNEL_FORWARDING: 33,
     MSP_MODE_RANGES:            34,
@@ -396,7 +396,7 @@ var MSP = {
                     }
                 }
                 break;
-            // Disabled, cleanflight does not use MSP_BOX.
+            // Disabled, betaflight does not use MSP_BOX.
             /*
             case MSP_codes.MSP_BOX:
                 AUX_CONFIG_values = []; // empty the array as new data is coming in
@@ -664,7 +664,7 @@ var MSP = {
                 break;
 
             //
-            // Cleanflight specific 
+            // Betaflight specific 
             //
 
             case MSP_codes.MSP_API_VERSION:
@@ -1196,7 +1196,7 @@ MSP.crunch = function (code) {
                 buffer.push(Math.round(RC_tuning.RC_YAW_EXPO * 100));
             }
             break;
-        // Disabled, cleanflight does not use MSP_SET_BOX.
+        // Disabled, betaflight does not use MSP_SET_BOX.
         /*
         case MSP_codes.MSP_SET_BOX:
             for (var i = 0; i < AUX_CONFIG_values.length; i++) {
@@ -1292,7 +1292,7 @@ MSP.crunch = function (code) {
             for (var i = 0; i < SERVO_CONFIG.length; i++) {
                 var out = SERVO_CONFIG[i].indexOfChannelToForward;
                 if (out == undefined) {
-                    out = 255; // Cleanflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
+                    out = 255; // Betaflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
                 }
                 buffer.push(out);
             }
@@ -1484,7 +1484,7 @@ MSP.sendServoConfigurations = function(onCompleteCallback) {
 
             var out = servoConfiguration.indexOfChannelToForward;
             if (out == undefined) {
-                out = 255; // Cleanflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
+                out = 255; // Betaflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
             }
             buffer.push(out);
 
@@ -1508,7 +1508,7 @@ MSP.sendServoConfigurations = function(onCompleteCallback) {
         for (var i = 0; i < SERVO_CONFIG.length; i++) {
             var out = SERVO_CONFIG[i].indexOfChannelToForward;
             if (out == undefined) {
-                out = 255; // Cleanflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
+                out = 255; // Betaflight defines "CHANNEL_FORWARDING_DISABLED" as "(uint8_t)0xFF"
             }
             buffer.push(out);
         }

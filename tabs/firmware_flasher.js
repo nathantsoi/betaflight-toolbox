@@ -134,7 +134,7 @@ TABS.firmware_flasher.initialize = function (callback) {
             })
         };
 
-        $.get('https://api.github.com/repos/cleanflight/cleanflight/releases', function (releases){
+        $.get('https://api.github.com/repos/betaflight/betaflight/releases', function (releases){
             processReleases(releases);
             TABS.firmware_flasher.releases = releases;
 
@@ -244,7 +244,7 @@ TABS.firmware_flasher.initialize = function (callback) {
                         $('a.flash_firmware').removeClass('disabled');
 
                         if (summary.commit) {
-                            $.get('https://api.github.com/repos/cleanflight/cleanflight/commits/' + summary.commit, function (data) {
+                            $.get('https://api.github.com/repos/betaflight/betaflight/commits/' + summary.commit, function (data) {
                                 var data = data,
                                     d = new Date(data.commit.author.date),
                                     offset = d.getTimezoneOffset() / 60,
@@ -256,7 +256,7 @@ TABS.firmware_flasher.initialize = function (callback) {
 
                                 $('div.git_info .committer').text(data.commit.author.name);
                                 $('div.git_info .date').text(date);
-                                $('div.git_info .hash').text(data.sha.slice(0, 7)).prop('href', 'https://github.com/cleanflight/cleanflight/commit/' + data.sha);
+                                $('div.git_info .hash').text(data.sha.slice(0, 7)).prop('href', 'https://github.com/betaflight/betaflight/commit/' + data.sha);
 
                                 $('div.git_info .message').text(data.commit.message);
 
