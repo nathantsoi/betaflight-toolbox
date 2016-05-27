@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "minimum_chrome_version": "38",
     "version": "1.2.2",
-    "author": "Hydra",
+    "author": "A community of amazing developers",
     "name": "Betaflight - Configurator",
     "short_name": "betaflight",
     "description": "Crossplatform configuration tool for Betaflight flight control system",
