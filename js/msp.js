@@ -1031,6 +1031,10 @@ var MSP = {
         }
     },
     send_message: function (code, data, callback_sent, callback_msp) {
+        if (GUI.dev_mode && !GUI.connected_to) {
+          console.log.apply("can't call send_message w/o a connection, even in dev_mode: ", code, data);
+          return;
+        }
         var bufferOut,
             bufView;
 
