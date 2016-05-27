@@ -3,7 +3,7 @@
 var TABS = {}; // filled by individual tab js file
 
 var GUI_control = function () {
-    this.dev_mode = !('update_url' in chrome.runtime.getManifest());
+    this.dev_mode = false; //!('update_url' in chrome.runtime.getManifest());
     this.auto_connect = false;
     this.connecting_to = false;
     this.connected_to = false;
