@@ -11,7 +11,10 @@ Choose `Load unpacked extension...` and pick the folder to which you cloned this
 Click `Launch` under the app name.
 
 Protips:
+
   - Keep the [chrome://extensions/](chrome://extensions/) window open and after a change hit `CTRL-R` in this window to reload the app.
+
+  - Set `this.dev_mode = !('update_url' in chrome.runtime.getManifest());` to show all the tabs and content when the extension is loaded unpacked, even when disconnected from a flight controller
 
 ## Authors
 
