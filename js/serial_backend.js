@@ -66,7 +66,8 @@ $(document).ready(function () {
 
                     GUI.connected_to = false;
                     CONFIGURATOR.connectionValid = false;
-                    GUI.allowedTabs = GUI.defaultAllowedTabsWhenDisconnected.slice();
+                    GUI.updateTabs(false)
+
                     MSP.disconnect_cleanup();
                     PortUsage.reset();
 
@@ -208,7 +209,7 @@ function onOpen(openInfo) {
 
                                     // continue as usually
                                     CONFIGURATOR.connectionValid = true;
-                                    GUI.allowedTabs = GUI.defaultAllowedTabsWhenConnected.slice();
+                                    GUI.updateTabs(true);
                                     if (semver.lt(CONFIG.apiVersion, "1.4.0")) {
                                         GUI.allowedTabs.splice(GUI.allowedTabs.indexOf('led_strip'), 1);
                                     }
@@ -250,8 +251,6 @@ function onConnect() {
     GUI.timeout_remove('connecting'); // kill connecting timer
     $('div#connectbutton a.connect_state').text(chrome.i18n.getMessage('disconnect')).addClass('active');
     $('div#connectbutton a.connect').addClass('active');
-    $('#tabs ul.mode-disconnected').hide();
-    $('#tabs ul.mode-connected').show(); 
      
     MSP.send_message(MSP_codes.MSP_STATUS, false, false);      
     
@@ -276,9 +275,6 @@ function onClosed(result) {
     } else { // Something went wrong
         GUI.log(chrome.i18n.getMessage('serialPortClosedFail'));
     }
-
-    $('#tabs ul.mode-connected').hide();
-    $('#tabs ul.mode-disconnected').show();
 
     var sensor_state = $('#sensor-status');
     sensor_state.hide();

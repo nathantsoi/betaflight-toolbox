@@ -64,14 +64,15 @@ $(document).ready(function () {
     console.log('Libraries: jQuery - ' + $.fn.jquery + ', d3 - ' + d3.version + ', three.js - ' + THREE.REVISION);
 
     // Tabs
+    GUI.updateTabs(false);
     var ui_tabs = $('#tabs > ul');
     $('a', ui_tabs).click(function () {
         if ($(this).parent().hasClass('active') == false && !GUI.tab_switch_in_progress) { // only initialize when the tab isn't already active
             var self = this,
                 tabClass = $(self).parent().prop('class');
 
-            var tabRequiresConnection = $(self).parent().hasClass('mode-connected');
-            
+            var tabRequiresConnection = !GUI.dev_mode && $(self).parent().hasClass('mode-connected');
+
             var tab = tabClass.substring(4);
             var tabName = $(self).text();
             

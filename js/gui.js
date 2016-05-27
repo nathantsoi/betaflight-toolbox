@@ -3,6 +3,7 @@
 var TABS = {}; // filled by individual tab js file
 
 var GUI_control = function () {
+    this.dev_mode = !('update_url' in chrome.runtime.getManifest());
     this.auto_connect = false;
     this.connecting_to = false;
     this.connected_to = false;
@@ -12,32 +13,49 @@ var GUI_control = function () {
     this.operating_system;
     this.interval_array = [];
     this.timeout_array = [];
-    this.defaultAllowedTabsWhenDisconnected = [
-        'landing',
-        'firmware_flasher',
-        'help'
-    ];
-    this.defaultAllowedTabsWhenConnected = [
-        'failsafe',
-        'transponder',
-        'adjustments',
-        'auxiliary',
-        'cli',
-        'configuration',
-        'gps',
-        'led_strip',
-        'logging',
-        'onboard_logging',
-        'modes',
-        'motors',
-        'pid_tuning',
-        'ports',
-        'receiver',
-        'sensors',
-        'servos',
-        'setup'
-    ];
-    this.allowedTabs = this.defaultAllowedTabsWhenDisconnected;
+
+    this.updateTabs = function(connected) {
+      var defaultAllowedTabsWhenDisconnected = [
+          'landing',
+          'firmware_flasher',
+          'help'
+      ];
+      var defaultAllowedTabsWhenConnected = [
+          'failsafe',
+          'transponder',
+          'adjustments',
+          'auxiliary',
+          'cli',
+          'configuration',
+          'gps',
+          'led_strip',
+          'logging',
+          'onboard_logging',
+          'modes',
+          'motors',
+          'pid_tuning',
+          'ports',
+          'receiver',
+          'sensors',
+          'servos',
+          'setup'
+      ];
+      if (this.dev_mode) {
+        this.allowedTabs = defaultAllowedTabsWhenDisconnected.slice().concat(defaultAllowedTabsWhenConnected.slice());
+        $('#tabs ul.mode-disconnected').show();
+        $('#tabs ul.mode-connected').show();
+      }
+      else if (connected) {
+        this.allowedTabs = defaultAllowedTabsWhenConnected.slice();
+        $('#tabs ul.mode-disconnected').hide();
+        $('#tabs ul.mode-connected').show();
+      }
+      else {
+        this.allowedTabs = defaultAllowedTabsWhenDisconnected.slice();
+        $('#tabs ul.mode-disconnected').show();
+        $('#tabs ul.mode-connected').hide();
+      }
+    };
 
     // check which operating system is user running
     if (navigator.appVersion.indexOf("Win") != -1)          this.operating_system = "Windows";
