@@ -120,8 +120,10 @@ $(document).ready(function () {
                 }
                 catch (e) {
                   if (GUI.dev_mode) {
+                    $('#content').load("./tabs/"+tab+".html");
                     GUI.tab_switch_in_progress = false;
-                    console.log('error in tab init: ', e);
+                    console.log('error in tab init: ');
+                    console.log(e, e.stack);
                   } else {
                     throw e;
                   }
